@@ -78,10 +78,15 @@ public class GoBang {
     public int validateNum(String pos) throws IOException{
         int result;
         //“-?[0-9]+.?[0-9]+”即可匹配所有数字
-        Pattern pattern = Pattern.compile("[1-9]||[1-9][0-9]");
+        Pattern pattern = Pattern.compile("^[0-9]*");
         Matcher isNum = pattern.matcher(pos);
         if (isNum.matches()){
-            result = Integer.parseInt(pos);
+            if (!pos.equals("")){
+                result = Integer.parseInt(pos);
+            }
+            else {
+                return -1;
+            }
             if (result > 0 && result < BOARD_SIZE + 1 ){
                 return result;
             }else {
